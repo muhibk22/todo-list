@@ -4,6 +4,47 @@
     box-sizing: border-box;
 }
 
+h1{
+    font-size: 2rem;
+}
+h2{
+    font-size: 1.8rem;
+}
+h1,h2{
+    margin: 1em;
+}
+ul{
+    margin:1em;
+}
+li{
+    margin: 10px;
+    font-size: 1.5rem;
+    list-style-type:none;
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+}
+.header img{
+    max-width: 6rem;
+    margin-left: 1em;
+}
+.header h1{
+    margin-left: 10px;
+}
+.header{
+    padding: 8px 0;
+    width: 100%;
+    background-color: pink;
+    display: flex;
+    align-items: center;
+}
 body{
-    
+    font-family: Arial, Helvetica, sans-serif;
 }
