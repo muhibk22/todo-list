@@ -87,13 +87,15 @@ body{
 
 .tasks{
     margin: 8px 20px;
-    width: 90%;
+    width: 95%;
     height: 48px;
-    background-color: rgb(240, 234, 204);
+    background-color:rgb(245, 245, 245);
+    border: 2px solid black;
     display: flex;
     align-items: center;
     gap: 4px;
-    border-radius: 22px;
+    border-radius: 2px;
+    position: relative;
 }
 .checkbox {
     margin: 0 6px 0 16px;
@@ -106,6 +108,67 @@ body{
 .task-title{
     font-size: 22px;
 }
+
 .title{
     margin-top:12px;
+}
+
+.details{
+    padding: 6px 14px;
+    border: 1px solid green;
+    color: rgb(2, 169, 157);
+    background-color: white;
+    font-weight: bold;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.15s, color 0.15s;
+    position: absolute;
+    left: 70%;
+}
+
+.details:hover{
+    background-color: rgb(2, 169, 157);
+    color: white;
+}
+
+.date{
+    position: absolute;
+    left: 83%;
+    color: rgb(47, 17, 17);
+}
+
+.modify-btn{
+    width: 32px;
+    height: auto;
+    cursor: pointer;    
+    position: absolute
+}
+
+.edit{
+    left: 92%;
+}
+.delete{
+    left: 96%;
+}
+
+@media (max-width:1120px){
+    .task-title{
+        font-size: 17px;
+    }
+    .details{
+        font-size: 14px;
+        padding: 5px 8px;
+    }
+    .date{
+        font-size: 14px;
+    }
+    .modify-btn{
+        width: 26px;
+    }
+
+}
+
+@media (max-width:970px){
+    
 }
