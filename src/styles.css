@@ -17,9 +17,16 @@ ul{
     margin:1em;
 }
 li{
-    margin: 10px;
-    font-size: 1.5rem;
+    margin:8px 16px;
+    font-size: 1.3rem;
     list-style-type:none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 12px;
+    transition: background-color 0.15s;
+}
+li:hover{
+    background-color: pink;
 }
 img{
     max-width: 100%;
@@ -71,4 +78,30 @@ body{
 
 .content{
     background-color: pink;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tasks{
+    margin: 8px 20px;
+    width: 90%;
+    height: 52px;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.checkbox {
+    margin: 0 6px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid pink;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+.title{
+    margin-top:12px;
 }
