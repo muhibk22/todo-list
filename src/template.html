@@ -64,7 +64,7 @@
             </div>
         </main>
     </div>
-    <div class="form">
+    <div class="form-container">
         <div class="card">
             <div class="form-header">
                 <h2>Add new...</h2>
@@ -74,7 +74,25 @@
                 <div class="sidebar-form">
                     <button type="button" id="task" class="sidebar-button">Task</button>
                     <button type="button" id="project" class="sidebar-button">Project</button>
+                </div>
+                <div class="form">
+                    <form>
+                        <input type="text" placeholder="Title of the task" maxlength="40" required>
+                        <textarea placeholder="Details..."> </textarea>
+                        <div class="date-input">
+                            <span>Due Date:</span>
+                            <input type="date" id="dueDate" name="dueDate" required>
+                        </div>
 
+                        <div class="priority">
+                            <span>Priority:</span>
+                            <button type="button" id="low" class="priority-btn">Low</button>
+                            <button type="button" id="medium" class="priority-btn">Medium</button>
+                            <button type="button" id="high" class="priority-btn">High</button>
+                        </div>
+
+                        <button type="button" id="submit">Add</button>
+                    </form>
                 </div>
             </div>
         </div>
