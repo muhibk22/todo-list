@@ -1,59 +1,71 @@
-*:before, *, *:after{
+*:before,
+*,
+*:after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-h1{
+h1 {
     font-size: 2rem;
 }
-h2{
+
+h2 {
     font-size: 1.8rem;
 }
-h1,h2{
+
+h1,
+h2 {
     margin: 1em;
 }
-ul{
-    margin:1em;
+
+ul {
+    margin: 1em;
 }
-li{
-    margin:8px 16px;
+
+li {
+    margin: 8px 16px;
     font-size: 1.3rem;
-    list-style-type:none;
+    list-style-type: none;
     cursor: pointer;
     padding: 4px;
     border-radius: 12px;
     transition: background-color 0.15s, color 0.15s;
 }
-li:hover{
+
+li:hover {
     background-color: rgb(0, 0, 0);
     color: white;
 }
-img{
+
+img {
     max-width: 100%;
     height: auto;
 }
 
-body{
+body {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
 }
 
-.container{
+.container {
     width: 100vw;
     height: 100vh;
     height: 100dvh;
     display: grid;
     grid-template-rows: auto 1fr;
 }
-.header img{
+
+.header img {
     max-width: 5rem;
     margin-left: 1.2em;
 }
-.header h1{
+
+.header h1 {
     margin-left: 12px;
 }
-.header{
+
+.header {
     padding: 4px 0;
     width: 100%;
     background-color: rgb(184, 184, 184);
@@ -64,7 +76,7 @@ body{
     font-style: normal;
 }
 
-.sidebar{
+.sidebar {
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
@@ -72,24 +84,24 @@ body{
     border-right: 4px solid rgb(184, 184, 184);
 }
 
-.main{ 
+.main {
     width: 100vw;
     display: grid;
     grid-template-columns: 300px 1fr;
 }
 
-.content{
+.content {
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.tasks{
+.tasks {
     margin: 8px 20px;
     width: 95%;
     height: 48px;
-    background-color:rgb(245, 245, 245);
+    background-color: rgb(245, 245, 245);
     border: 2px solid black;
     display: flex;
     align-items: center;
@@ -97,6 +109,7 @@ body{
     border-radius: 2px;
     position: relative;
 }
+
 .checkbox {
     margin: 0 6px 0 16px;
     width: 20px;
@@ -105,15 +118,16 @@ body{
     border-radius: 50%;
     cursor: pointer;
 }
-.task-title{
+
+.task-title {
     font-size: 22px;
 }
 
-.title{
-    margin-top:12px;
+.title {
+    margin-top: 12px;
 }
 
-.details{
+.details {
     padding: 6px 14px;
     border: 1px solid green;
     color: rgb(2, 169, 157);
@@ -127,48 +141,160 @@ body{
     left: 70%;
 }
 
-.details:hover{
+.details:hover {
     background-color: rgb(2, 169, 157);
     color: white;
 }
 
-.date{
+.date {
     position: absolute;
     left: 83%;
     color: rgb(47, 17, 17);
 }
 
-.modify-btn{
+.modify-btn {
     width: 32px;
     height: auto;
-    cursor: pointer;    
+    cursor: pointer;
     position: absolute
 }
 
-.edit{
+.edit {
     left: 92%;
 }
-.delete{
+
+.delete {
     left: 96%;
 }
 
-@media (max-width:1120px){
-    .task-title{
+.task-title-div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 58ch;
+}
+
+@media (max-width:1120px) {
+    .task-title {
         font-size: 17px;
     }
-    .details{
+
+    .details {
         font-size: 14px;
         padding: 5px 8px;
     }
-    .date{
+
+    .date {
         font-size: 14px;
     }
-    .modify-btn{
+
+    .modify-btn {
         width: 26px;
+    }
+
+    .task-title-div {
+        width: 44ch;
     }
 
 }
 
-@media (max-width:970px){
-    
+@media (max-width:970px) {
+    .sidebar {
+        display: none;
+    }
+
+    .content {
+        width: 100vw;
+    }
+}
+
+@media (max-width:670px) {
+    .tasks {
+        height: 42px;
+        gap: 2px;
+    }
+
+    .task-title {
+        font-size: 14px;
+    }
+
+    .details {
+        font-size: 12px;
+        padding: 5px 6px;
+    }
+
+
+    .date {
+        font-size: 12px;
+    }
+
+    .modify-btn {
+        width: 20px;
+    }
+
+    .task-title-div {
+        width: 30ch;
+    }
+
+    .checkbox {
+        width: 16px;
+        height: 16px;
+        margin-left: 8px;
+    }
+}
+
+@media (max-width:540px) {
+    .details {
+        font-size: 10px;
+        padding: 2px 4px;
+    }
+
+    .date {
+        font-size: 10px;
+    }
+
+    .modify-btn {
+        width: 14px;
+    }
+    .title{
+        font-size: 1.5rem;
+    }
+
+}
+
+@media (max-width: 460px) {
+    .task-title-div {
+        width: 20ch;
+    }
+
+    .task-title {
+        font-size: 12px;
+    }
+
+    .tasks {
+        height: 36px;
+    }
+
+    .details {
+        font-size: 8px;
+        padding: 2px 4px;
+    }
+
+    .date {
+        font-size: 8px;
+    }
+
+    .modify-btn {
+        width: 12px;
+    }
+    .checkbox{
+        width: 12px;
+        height: 12px;
+    }
+}
+
+@media (max-width:320px){
+    .task-title-div{
+        width: 12ch;
+    }
 }
