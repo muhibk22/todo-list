@@ -6,6 +6,34 @@
     box-sizing: border-box;
 }
 
+
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 8px;                
+    height: 8px;               
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #515151;     
+    border-radius: 6px;         
+    border: 2px solid #ccc;     
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ffffff;  
+    border-radius: 6px;
+}
+
+@-moz-document url-prefix() {
+    html {
+        scrollbar-width: thin;
+        scrollbar-color: #515151 #ddd;
+    }
+}
+
 h1 {
     font-size: 2rem;
 }
@@ -223,8 +251,11 @@ body {
 }
 
 
-
-
+.projects{
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 
 @media (max-width:1120px) {
     .task-title {
@@ -270,6 +301,12 @@ body {
 
     .navigation {
         display: block;
+    }
+    .sidebar h2{
+        margin-bottom: 0;
+    }
+    .projects{
+        height: 160px
     }
 }
 
