@@ -30,12 +30,17 @@ li {
     cursor: pointer;
     padding: 4px;
     border-radius: 12px;
-    transition: background-color 0.15s, color 0.15s;
+    display:flex ;
+    align-items: center;
+    flex-wrap: wrap;
+    word-wrap: break-word; 
+    word-break: break-word; 
+    gap: 4px;
+    transition: background-color 0.15s;
 }
 
 li:hover {
-    background-color: rgb(0, 0, 0);
-    color: white;
+    background-color: rgb(204, 204, 204);
 }
 
 img {
@@ -77,13 +82,13 @@ body {
 }
 
 .sidebar {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
     background-color: rgba(235, 235, 235, 0.9);
     border-right: 4px solid rgb(184, 184, 184);
+    position: relative;
 }
-
+.calendar{
+    width: 1.4rem;
+}
 .main {
     width: 100vw;
     display: grid;
@@ -173,6 +178,32 @@ body {
     text-overflow: ellipsis;
     width: 58ch;
 }
+
+.add{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid rgb(112, 112, 112);
+    box-shadow: 0px 0px 5px black;
+    position: absolute;
+    top:84%;
+    left: 39%;
+    cursor: pointer;
+    transition: box-shadow 0.15s;
+}
+
+.add:hover{
+    box-shadow: 0px 0px 5px 3px rgb(107, 107, 107);
+}
+
+
+
+
+
+
+
+
+
 
 @media (max-width:1120px) {
     .task-title {
