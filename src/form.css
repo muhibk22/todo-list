@@ -187,6 +187,14 @@ input[type="date"] {
     background-color: black;
 }
 
+.hide{
+    display: none;
+}
+
+#close-form{
+    cursor: pointer;
+}
+
 @media (max-width:570px) {
     .sidebar-form {
         width: 140px;
