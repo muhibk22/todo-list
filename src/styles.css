@@ -257,6 +257,13 @@ body {
     overflow-y: scroll;
 }
 
+.task-container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
 @media (max-width:1120px) {
     .task-title {
         font-size: 17px;
