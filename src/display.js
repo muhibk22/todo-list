@@ -1,10 +1,44 @@
 import editImg from "./images/pencil.svg";
 import deleteImg from "./images/delete.svg";
 import { saveToStorage, saveProjects } from "./storage";
-import { format } from 'date-fns';
+import { format,add } from 'date-fns';
 
 
+function sortByTime(taskArray){
+    const allTime=document.getElementById("all-time");
+    const today=document.getElementById("today");
+    const week=document.getElementById("week");
+    const title=document.querySelector(".title");
+    const todayDate= new Date();
+    const formattedDate=format(todayDate,"yyyy-MM-dd");
+    const taskContainer = document.querySelector(".task-container");
 
+    allTime.addEventListener("click",()=> {
+        title.textContent="Tasks- All Time";
+        updateTasks(taskArray)
+    });
+    today.addEventListener("click",function(){
+        taskContainer.innerHTML = "";
+        title.textContent="Tasks- Today";
+        for (let i=0; i<taskArray.length; i++){
+            if (taskArray[i].date===formattedDate){
+                taskContainer.appendChild(createTask(i,taskArray[i]));
+            }
+        }
+    });
+
+    week.addEventListener("click",function(){
+        taskContainer.innerHTML="";
+        title.textContent="Tasks- In a Week";
+        const newDate = add(todayDate, { days: 7 });
+        const targetDate=format(newDate,"yyyy-MM-dd");
+        for (let i=0; i<taskArray.length; i++){
+            if (taskArray[i].date>formattedDate && taskArray[i].date <= targetDate){
+                taskContainer.appendChild(createTask(i,taskArray[i]));
+            }
+        }
+    });
+}
 
 function updateProjects(projectArray) {
     const projects = document.querySelector(".projects");
@@ -48,8 +82,10 @@ function deleteTask(todoArray) {
 
 
 function initializeTask(taskArray) {
-    let task1 = { title: "Do laundry", details: "Wash all clothes", date: "Sep 12", priority: "high", status: "incomplete" };
-    let task2 = { title: "Buy groceries", details: "Get milk, eggs, and bread", date: "Sep 12", priority: "medium", status: "incomplete" };
+    const todayDate= new Date();
+    const formattedDate=format(todayDate,"yyyy-MM-dd");
+    let task1 = { title: "Do laundry", details: "Wash all clothes", date: formattedDate, priority: "high", status: "incomplete" };
+    let task2 = { title: "Buy groceries", details: "Get milk, eggs, and bread", date: formattedDate, priority: "medium", status: "incomplete" };
     taskArray.push(task1, task2);
 }
 
@@ -116,4 +152,4 @@ function createTask(index, taskArray) {
     return taskDiv;
 }
 
-export { updateProjects, updateTasks, initializeTask, initializeProject};
+export { updateProjects, updateTasks, initializeTask, initializeProject, sortByTime};
