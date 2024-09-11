@@ -40,6 +40,13 @@ function sortByTime(taskArray){
     });
 }
 
+function sortByProject(projectArray){
+    const projects=document.querySelector(".projects");
+   
+
+
+}
+
 function updateProjects(projectArray) {
     const projects = document.querySelector(".projects");
     projects.innerHTML = "";
@@ -57,6 +64,13 @@ function createProject(index, projectArray) {
     li.innerText = projectArray;
     li.setAttribute("index", index);
     ul.appendChild(li);
+
+    li.addEventListener("click",function(){
+        const targetIndex=li.getAttribute("index");
+        const title=document.querySelector(".title");
+        title.innerText=li.textContent;
+        
+    })
     return ul;
     
 }
