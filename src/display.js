@@ -1,46 +1,51 @@
 import editImg from "./images/pencil.svg";
 import deleteImg from "./images/delete.svg";
-
-function updateProjects(projectArray){
-    const projects=document.querySelector(".projects");
-    const ul=document.createElement("ul");
+import { saveToStorage } from "./storage";
+function updateProjects(projectArray) {
+    const projects = document.querySelector(".projects");
+    const ul = document.createElement("ul");
     projects.appendChild(ul);
-    if (projectArray.length===0){
-        const li=document.createElement("li");
-        li.innerText="Batman";
+    if (projectArray.length === 0) {
+        const li = document.createElement("li");
+        li.innerText = "Batman";
         ul.appendChild(li);
     }
 };
 
-function deleteTask(){
-    const deleteButton=document.querySelectorAll(".delete");
+function deleteTask(todoArray) {
+    const deleteButton = document.querySelectorAll(".delete");
     let index;
-    deleteButton.forEach(button=>{
-        button.addEventListener("click",()=>{
-            const taskDiv=button.closest(".tasks");
-            index=taskDiv.getAttribute("data-index");
-            taskDiv.remove();
+    deleteButton.forEach(button => {
+        button.addEventListener("click", () => {
+            const taskDiv = button.closest(".tasks");
+            index = taskDiv.getAttribute("data-index");
+            todoArray.splice(index, 1);
             console.log(index);
+            updateTasks(todoArray);
         });
     });
 };
 
 
-function updateTasks(taskArray){
-    const taskContainer=document.querySelector(".task-container");
-    if (taskArray.length===0){
-        taskContainer.appendChild(createTask(0,"Do laundry", "Sep 12"));
-        taskContainer.appendChild(createTask(1,"Go to the gym","Sep 12" ));
-    }
-    deleteTask();
 
+
+function updateTasks(taskArray) {
+    const taskContainer = document.querySelector(".task-container");
+    taskContainer.innerHTML="";
+
+    for (let i = 0; i < taskArray.length; i++) {
+        taskContainer.appendChild(createTask(i, taskArray[i]));
+    }
+    saveToStorage(taskArray);
+    deleteTask(taskArray);
 }
 
-function createTask(index,title,dueDate) {
-    
+
+function createTask(index, taskArray) {
+
     const taskDiv = document.createElement('div');
     taskDiv.classList.add('tasks');
-    taskDiv.setAttribute('data-index', index );
+    taskDiv.setAttribute('data-index', index);
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -49,13 +54,13 @@ function createTask(index,title,dueDate) {
 
     const taskTitleDiv = document.createElement('div');
     taskTitleDiv.classList.add('task-title-div');
-    
-    
+
+
     const taskTitle = document.createElement('p');
     taskTitle.classList.add('task-title');
-    taskTitle.textContent = title;
+    taskTitle.textContent = taskArray.title;
     taskTitleDiv.appendChild(taskTitle);
-    
+
     taskDiv.appendChild(taskTitleDiv);
 
     const detailsButton = document.createElement('button');
@@ -66,10 +71,10 @@ function createTask(index,title,dueDate) {
 
     const date = document.createElement('p');
     date.classList.add('date');
-    date.textContent = dueDate;
+    date.textContent = taskArray.date;
     taskDiv.appendChild(date);
 
-    
+
     const editButton = document.createElement('img');
     editButton.src = editImg;
     editButton.alt = 'Edit';
@@ -81,8 +86,9 @@ function createTask(index,title,dueDate) {
     deleteButton.alt = 'Delete';
     deleteButton.classList.add('modify-btn', 'delete');
     taskDiv.appendChild(deleteButton);
+   
 
     return taskDiv;
 }
 
-export {updateProjects,deleteTask,updateTasks};
+export { updateProjects, updateTasks };
