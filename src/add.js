@@ -9,6 +9,8 @@ export default function addTask(){
 
     close.addEventListener("click",function(){
         form.classList.add("hide");
+        projectForm.reset();
+        taskForm.reset();
     });
     add.addEventListener("click",function(){
         form.classList.remove("hide");
