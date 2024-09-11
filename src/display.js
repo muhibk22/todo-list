@@ -28,10 +28,15 @@ function deleteTask(todoArray) {
 
 
 
+function initilizeTask(taskArray) {
+    let task1 = { title: "Do laundry", details: "Wash all clothes", date: "Sep 12", priority: "high", status: "incomplete" };
+    let task2 = { title: "Buy groceries", details: "Get milk, eggs, and bread", date: "Sep 12", priority: "medium", status: "incomplete"};
+    taskArray.push(task1, task2);
+}
 
 function updateTasks(taskArray) {
     const taskContainer = document.querySelector(".task-container");
-    taskContainer.innerHTML="";
+    taskContainer.innerHTML = "";
 
     for (let i = 0; i < taskArray.length; i++) {
         taskContainer.appendChild(createTask(i, taskArray[i]));
@@ -86,9 +91,9 @@ function createTask(index, taskArray) {
     deleteButton.alt = 'Delete';
     deleteButton.classList.add('modify-btn', 'delete');
     taskDiv.appendChild(deleteButton);
-   
+
 
     return taskDiv;
 }
 
-export { updateProjects, updateTasks };
+export { updateProjects, updateTasks, initilizeTask };

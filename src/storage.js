@@ -1,15 +1,3 @@
-function Task(title, details, date, priority, status = 'incomplete') {
-    this.title = title;
-    this.details = details;
-    this.date = date;
-    this.priority = priority;
-    this.status = status;
-
-}
-Task.prototype.markComplete = function () {
-    this.status = 'complete';
-};
-
 
 function storageAvailable(type) {
     let storage;
@@ -33,24 +21,37 @@ function saveToStorage(taskArray) {
     else console.log("Failed to save to local storage");
 }
 
-function loadTasksFromLocalStorage(taskArray) {
+function loadTasksFromLocalStorage(todoArray) {
     if (storageAvailable("localStorage")) {
-        const savedTasks = localStorage.getItem("tasks");
-        taskArray = JSON.parse(savedTasks);
-        
-    }
-    else {
-        console.log("Failed to load data from local storage");
-    }
-    if (taskArray.length === 0) {
-        initilizeTask(taskArray);
+        let savedTasks = localStorage.getItem("tasks");
+
+        if (savedTasks) {
+            try {
+                savedTasks = JSON.parse(savedTasks);
+                todoArray.length = 0;
+
+                savedTasks.forEach(task => {
+                    todoArray.push({
+                        title: task.title || "",
+                        details: task.details || "",
+                        date: task.date || "",
+                        priority: task.priority || "",
+                        status: task.status || "incomplete"
+                    });
+                });
+            } catch (e) {
+                console.error("Error parsing tasks from localStorage:", e);
+                localStorage.removeItem("tasks");
+            }
+        } else {
+            console.log("No tasks found in localStorage.");
+        }
+    } else {
+        console.log("LocalStorage is not available.");
     }
 }
 
-function initilizeTask(taskArray) {
-    let task1 = new Task("Do laundry", "Wash all clothes", "Sep 12", "high");
-    let task2 = new Task("Buy groceries", "Get milk, eggs, and bread", "Sep 12", "medium");
-    taskArray.push(task1, task2);
-}
+
+
 
 export { loadTasksFromLocalStorage, saveToStorage };

@@ -1,3 +1,5 @@
+
+
 function submitTodo(todoArray){
     const todoForm=document.getElementById("todo-form");
     const todoTitle=document.getElementById("todo-title").value;

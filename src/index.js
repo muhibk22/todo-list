@@ -3,7 +3,7 @@ import "./form.css"
 import navdrop from "./nav";
 import addTask from "./add";
 import { submitTodo, submitProject } from "./submit";
-import { updateProjects, updateTasks} from "./display";
+import { updateProjects, updateTasks,initilizeTask} from "./display";
 import {loadTasksFromLocalStorage,saveToStorage} from "./storage";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -14,10 +14,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     navdrop();
     addTask();
-    updateProjects(projectArray);
-    loadTasksFromLocalStorage(todoArray);
-    updateTasks(todoArray);
 
+    loadTasksFromLocalStorage(todoArray);
+    updateProjects(projectArray);
+    console.log(todoArray);
+   
+    if (todoArray.length===0){
+        initilizeTask(todoArray);
+    }
+    updateTasks(todoArray);
 
     todoBtn.addEventListener("click", () => {
         submitTodo(todoArray)
