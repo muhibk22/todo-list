@@ -31,7 +31,8 @@
     padding: 12px 0;
     background-color: rgb(184, 184, 184);
 }
-.form-header h2{
+
+.form-header h2 {
     margin: 8px 28px;
 }
 
@@ -47,7 +48,7 @@
     margin-right: 28px;
 }
 
-.sidebar-form{
+.sidebar-form {
     display: flex;
     flex-direction: column;
     width: 200px;
@@ -56,13 +57,14 @@
     align-items: start;
     border-right: 2px solid black;
 }
-.form-body{
+
+.form-body {
     height: 100%;
     width: 100%;
     display: flex;
 }
 
-.sidebar-button{
+.sidebar-button {
     color: white;
     background: transparent;
     border: none;
@@ -73,23 +75,23 @@
     transition: border-bottom 0.15s;
 }
 
-.sidebar-button:hover{
+.sidebar-button:hover {
     border-bottom: 4px solid rgb(255, 255, 255);
 }
 
-.form{
+.form {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     width: 90%;
 }
 
-input[type="text"]{
+input[type="text"] {
     padding: 12px 0;
     font-size: 22px;
     border: none;
@@ -97,35 +99,38 @@ input[type="text"]{
 }
 
 textarea {
-    width: 100%; 
-    padding: 10px; 
+    padding: 10px;
     border-radius: 4px;
-    font-size: 1rem; 
+    font-size: 1rem;
     border: 1px solid transparent;
-    resize: none; 
-    box-sizing: border-box; 
-    min-height: 150px; 
-    background-color: #f9f9f9; 
-    color: #000000; 
+    resize: none;
+    box-sizing: border-box;
+    min-height: 150px;
+    background-color: #f9f9f9;
+    color: #000000;
+    max-width: 100%;
 }
 
 
 textarea:focus {
-    border: 1px solid #ccc; 
-    outline: none; 
+    border: 1px solid #ccc;
+    outline: none;
     box-shadow: 0 0 3px #ccc;
 }
-input[type="date"]{
-    padding:4px 8px;
+
+input[type="date"] {
+    padding: 4px 8px;
     background-color: rgb(211, 211, 211);
     border-radius: 2px;
     border: 1px solid black;
 }
-.date-input,.priority{
+
+.date-input,
+.priority {
     margin: 16px 0;
 }
 
-.priority button{
+.priority button {
     font-size: 16px;
     padding: 3px 8px;
     background-color: white;
@@ -133,39 +138,41 @@ input[type="date"]{
     cursor: pointer;
 }
 
-#low{
+#low {
     margin-left: 18px;
     color: rgb(2, 120, 45);
     border: 1px solid green;
     transition: color 0.15s, background-color 0.15s;
 }
 
-#low:hover{
-    background-color:rgb(2, 120, 45);
+#low:hover {
+    background-color: rgb(2, 120, 45);
     color: white;
 }
 
-#medium{
+#medium {
     color: rgb(234, 113, 0);
     border: 1px solid rgb(234, 113, 0);
     transition: color 0.15s, background-color 0.15s;
 }
-#medium:hover{
+
+#medium:hover {
     background-color: rgb(234, 113, 0);
     color: white;
 }
 
-#high{
+#high {
     color: red;
     border: 1px solid red;
     transition: color 0.15s, background-color 0.15s;
 }
-#high:hover{
+
+#high:hover {
     background-color: rgb(198, 0, 23);
     color: white;
 }
 
-#submit{
+#submit {
     padding: 3px 8px;
     width: 80px;
     font-size: 16px;
@@ -175,7 +182,53 @@ input[type="date"]{
     transition: color 0.15s, background-color 0.15s;
 }
 
-#submit:hover{
+#submit:hover {
     color: white;
     background-color: black;
+}
+
+@media (max-width:570px) {
+    .sidebar-form {
+        width: 140px;
+    }
+    .form-header h2{
+        font-size: 1.2rem;
+    }
+    .sidebar-button {
+        font-size: 20px;
+        margin-left: 6px;
+    }
+
+    input[type="text"],
+    textarea {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    .priority button {
+        font-size: 14px;
+        padding: 2px 2px;
+    }
+
+    input[type="date"] {
+        padding: 2px 4px;
+    }
+    #low{
+        margin-left: 2px;
+    }
+
+}
+
+@media (max-width:360px){
+    .sidebar-button{
+        font-size: 1rem;
+    }
+    .sidebar-form{
+        width: 100px;
+    }
+    input[type="text"],
+    textarea {
+        font-size: 0.8em;
+        padding: 8px;
+    }
 }
