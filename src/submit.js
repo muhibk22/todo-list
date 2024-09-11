@@ -1,10 +1,10 @@
 
-
 function submitTodo(todoArray){
     const todoForm=document.getElementById("todo-form");
     const todoTitle=document.getElementById("todo-title").value;
     const todoDetail=document.getElementById("todo-detail").value;
     const todoDate=document.getElementById("dueDate").value;
+    const form=document.querySelector(".form-container");
     let selectedPriority="Low";
     const priorityButton=document.querySelectorAll(".priority-btn");
 
@@ -35,13 +35,15 @@ function submitTodo(todoArray){
     todoArray.push(todo);
     console.log(todoArray);
     todoForm.reset();
+    form.classList.add("hide");
+
 }
 
 
 function submitProject(projectArray){
     const projectTitle=document.getElementById("project-title").value;
     const projectForm=document.getElementById("project-form");
-    
+    const form=document.querySelector(".form-container");
 
     const projectTitleCheck = document.getElementById("project-title").value.trim();
     
@@ -51,6 +53,7 @@ function submitProject(projectArray){
     }
     projectArray.push(projectTitle);
     projectForm.reset();
+    form.classList.add("hide");
     console.log(projectArray);
 }
 

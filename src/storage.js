@@ -1,3 +1,4 @@
+import { initializeTask, initializeProject } from "./display";
 
 function storageAvailable(type) {
     let storage;
@@ -21,7 +22,14 @@ function saveToStorage(taskArray) {
     else console.log("Failed to save to local storage");
 }
 
-function loadTasksFromLocalStorage(todoArray) {
+function saveProjects(projectArray) {
+    if (storageAvailable("localStorage")) {
+        localStorage.setItem("projects", JSON.stringify(projectArray));
+    }
+    else console.log("Failed to save to local storage");
+}
+
+function loadTasks(todoArray) {
     if (storageAvailable("localStorage")) {
         let savedTasks = localStorage.getItem("tasks");
 
@@ -39,19 +47,49 @@ function loadTasksFromLocalStorage(todoArray) {
                         status: task.status || "incomplete"
                     });
                 });
-            } catch (e) {
+            }
+            catch (e) {
                 console.error("Error parsing tasks from localStorage:", e);
                 localStorage.removeItem("tasks");
             }
-        } else {
-            console.log("No tasks found in localStorage.");
         }
-    } else {
+        else {
+            console.log("No tasks found in localStorage.");
+            initializeTask(todoArray);
+        }
+    }
+    else {
         console.log("LocalStorage is not available.");
+    }
+}
+
+function loadProjects(projectArray) {
+    if (storageAvailable("localStorage")) {
+        let savedProjects = localStorage.getItem("projects");
+        if (savedProjects) {
+            try {
+                savedProjects = JSON.parse(savedProjects);
+                projectArray.length = 0;
+
+                for (let i=0; i<savedProjects.length; i++){
+                    projectArray.push(savedProjects[i]);
+                };
+            }
+            catch (e) {
+                console.error("Error parsing project from localStore", e);
+                localStorage.removeItem("projects");
+            }
+        }
+        else{
+            initializeProject(projectArray);
+        }
+    }
+    else {
+        console.log("Local Storage is not available");
     }
 }
 
 
 
 
-export { loadTasksFromLocalStorage, saveToStorage };
+export { loadTasks, saveToStorage, loadProjects, saveProjects };

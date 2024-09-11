@@ -1,16 +1,32 @@
 import editImg from "./images/pencil.svg";
 import deleteImg from "./images/delete.svg";
-import { saveToStorage } from "./storage";
+import { saveToStorage, saveProjects } from "./storage";
+
+
 function updateProjects(projectArray) {
     const projects = document.querySelector(".projects");
-    const ul = document.createElement("ul");
-    projects.appendChild(ul);
-    if (projectArray.length === 0) {
-        const li = document.createElement("li");
-        li.innerText = "Batman";
-        ul.appendChild(li);
+    projects.innerHTML = "";
+    for (let i = 0; i < projectArray.length; i++) {
+        projects.appendChild(createProject(i,projectArray[i]));
     }
+    saveProjects(projectArray);
 };
+
+
+
+function createProject(index, projectArray) {
+    const ul = document.createElement("ul");
+    const li = document.createElement("li");
+    li.innerText = projectArray;
+    li.setAttribute("index", index);
+    ul.appendChild(li);
+    return ul;
+    
+}
+
+function initializeProject(projectArray) {
+    projectArray.push("Marathon Training", "Make a to-do list");
+}
 
 function deleteTask(todoArray) {
     const deleteButton = document.querySelectorAll(".delete");
@@ -28,9 +44,9 @@ function deleteTask(todoArray) {
 
 
 
-function initilizeTask(taskArray) {
+function initializeTask(taskArray) {
     let task1 = { title: "Do laundry", details: "Wash all clothes", date: "Sep 12", priority: "high", status: "incomplete" };
-    let task2 = { title: "Buy groceries", details: "Get milk, eggs, and bread", date: "Sep 12", priority: "medium", status: "incomplete"};
+    let task2 = { title: "Buy groceries", details: "Get milk, eggs, and bread", date: "Sep 12", priority: "medium", status: "incomplete" };
     taskArray.push(task1, task2);
 }
 
@@ -96,4 +112,4 @@ function createTask(index, taskArray) {
     return taskDiv;
 }
 
-export { updateProjects, updateTasks, initilizeTask };
+export { updateProjects, updateTasks, initializeTask, initializeProject};
