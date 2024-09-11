@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded",function(){
     navdrop();
     addTask();
     const todoBtn=document.getElementById("submit-todo");
+    const projectBtn=document.getElementById("submit-project");
     const todoArray=[];
+    const projectArray=[];
     todoBtn.addEventListener("click",()=>submitTodo(todoArray));
-})
+    projectBtn.addEventListener("click",()=>submitProject(projectArray));
+});
