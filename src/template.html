@@ -77,9 +77,9 @@
                 </div>
                 <div class="form">
                     <form id="todo-form">
-                        <input type="text" placeholder="Title of the task" maxlength="40" required>
-                        <textarea placeholder="Details..."> </textarea>
-                        <div class="date-input">
+                        <input type="text" placeholder="Title of the task" id="todo-title" maxlength="40" required>
+                        <textarea placeholder="Details..." id="todo-detail"> </textarea>
+                        <div class="date-input" id="todo-date">
                             <span>Due Date:</span>
                             <input type="date" id="dueDate" name="dueDate" required>
                         </div>
@@ -92,11 +92,11 @@
                             <button type="button" id="high" class="priority-btn">High</button>
                         </div>
 
-                        <button type="button" id="submit">Add</button>
+                        <input type="submit" id="submit-todo" class="submit" value="Add">
                     </form>
                     <form id="project-form" class="hide">
-                        <input type="text" placeholder="Project Title" maxlength="40" required>
-                        <button type="button" id="submit">Add</button>
+                        <input type="text" placeholder="Project Title" id="project-title" maxlength="40" required>
+                        <input type="submit" id="submit-project" class="submit" value="Add">
                     </form>
                 </div>
             </div>

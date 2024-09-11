@@ -172,7 +172,7 @@ input[type="date"] {
     color: white;
 }
 
-#submit {
+.submit {
     padding: 3px 8px;
     width: 80px;
     font-size: 16px;
@@ -182,7 +182,7 @@ input[type="date"] {
     transition: color 0.15s, background-color 0.15s;
 }
 
-#submit:hover {
+.submit:hover {
     color: white;
     background-color: black;
 }
