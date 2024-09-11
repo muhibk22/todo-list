@@ -3,14 +3,19 @@ import "./form.css"
 import navdrop from "./nav";
 import addTask from "./add";
 import { submitTodo, submitProject } from "./submit";
-import { updateProjects, updateTasks,initializeTask, initializeProject} from "./display";
+import { updateProjects, updateTasks} from "./display";
 import {loadTasks,loadProjects} from "./storage";
+import { format } from 'date-fns';
 
 document.addEventListener("DOMContentLoaded", function () {
     const todoBtn = document.getElementById("submit-todo");
     const projectBtn = document.getElementById("submit-project");
     const todoArray = [];
     const projectArray = [];
+
+    const date = new Date(2024, 8, 12);
+    const formatDate= format(date,"MMM d");
+    console.log(formatDate);
 
     navdrop();
     addTask();
@@ -20,9 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadProjects(projectArray);
     updateProjects(projectArray);
    
-    // if (todoArray.length===0){
-    //     initilizeTask(todoArray);
-    // }
 
     todoBtn.addEventListener("click", () => {
         submitTodo(todoArray)

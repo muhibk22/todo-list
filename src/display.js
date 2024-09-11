@@ -1,6 +1,9 @@
 import editImg from "./images/pencil.svg";
 import deleteImg from "./images/delete.svg";
 import { saveToStorage, saveProjects } from "./storage";
+import { format } from 'date-fns';
+
+
 
 
 function updateProjects(projectArray) {
@@ -92,7 +95,8 @@ function createTask(index, taskArray) {
 
     const date = document.createElement('p');
     date.classList.add('date');
-    date.textContent = taskArray.date;
+    const formatDate=format(taskArray.date,"MMM d");
+    date.textContent = formatDate;
     taskDiv.appendChild(date);
 
 
