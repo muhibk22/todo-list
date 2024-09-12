@@ -3,7 +3,7 @@ import "./form.css"
 import navdrop from "./nav";
 import addTask from "./add";
 import { submitTodo, submitProject } from "./submit";
-import { updateProjects, updateTasks, sortByTime } from "./display";
+import { updateProjects, updateTasks, sortByTime,initializeProject } from "./display";
 import { loadTasks, loadProjects, selected } from "./storage";
 
 
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const projectBtn = document.getElementById("submit-project");
     const todoArray = [];
     const projectArray = [];
-    let selectedProject = { title: "" };
+    let selectedProject = { title: "", tasks:[]};
 
     navdrop();
     addTask();

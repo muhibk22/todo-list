@@ -52,26 +52,27 @@ function updateProjects(projectArray) {
 
 
 
-function createProject(index, project) {
+function createProject(index, projectArray) {
     const ul = document.createElement("ul");
     const li = document.createElement("li");
-    li.innerText = project;
+    li.innerText = projectArray.title;
     li.setAttribute("index", index);
     ul.appendChild(li);
-    li.setAttribute("project",project);
+    li.setAttribute("project",projectArray.title);
     li.addEventListener("click",function(){
         const title=document.querySelector(".title");
+        const taskContainer = document.querySelector(".task-container");
         title.innerText=li.textContent;
-        
+        taskContainer.innerHTML="";
     })
     return ul;
-    
 }
 
 
-
 function initializeProject(projectArray) {
-    projectArray.push("Marathon Training", "Make a to-do list");
+    const project1={title: "Marathon Training", tasks: []};
+    const project2={title: "Make a to-do list", tasks: []};
+    projectArray.push(project1, project2);
 }
 
 function deleteTask(todoArray) {

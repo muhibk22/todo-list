@@ -51,7 +51,8 @@ function submitProject(projectArray){
         alert("Project Title cannot be empty");
         return; 
     }
-    projectArray.push(projectTitle);
+    const project={title: projectTitle, tasks: []};
+    projectArray.push(project);
     projectForm.reset();
     form.classList.add("hide");
     console.log(projectArray);

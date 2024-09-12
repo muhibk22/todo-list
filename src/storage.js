@@ -22,6 +22,7 @@ function saveToStorage(taskArray) {
     else console.log("Failed to save to local storage");
 }
 
+
 function saveProjects(projectArray) {
     if (storageAvailable("localStorage")) {
         localStorage.setItem("projects", JSON.stringify(projectArray));
@@ -95,6 +96,7 @@ function selected(obj){
     target.forEach((tar)=>{
         tar.addEventListener("click",function(){
             obj.title=tar.getAttribute("project");
+            console.log(obj.title);
         });
     });
 }
