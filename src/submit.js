@@ -33,7 +33,6 @@ function submitTodo(todoArray){
         status: 'incomplete' 
     };
     todoArray.push(todo);
-    console.log(todoArray);
     todoForm.reset();
     form.classList.add("hide");
 
@@ -55,7 +54,6 @@ function submitProject(projectArray){
     projectArray.push(project);
     projectForm.reset();
     form.classList.add("hide");
-    console.log(projectArray);
 }
 
 export {submitTodo,submitProject};

@@ -263,6 +263,47 @@ body {
     width: 100%;
     flex-direction: column;
 }
+.empty-project{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    text-align: center;
+}
+.empty-project-btn{
+    margin: 16px;
+    padding: 4px 8px;
+    font-size: 16px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#add-task{
+    border: 1px solid green;
+    color: rgb(2, 169, 157);
+    background-color: white;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+#add-task:hover {
+    background-color: rgb(2, 169, 157);
+    color: white;
+}
+
+#del-project{
+    border: 1px solid rgb(215, 0, 0);
+    color: rgb(215, 0, 0);
+    background-color: white;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+#del-project:hover {
+    background-color: rgb(215, 0, 0);
+    color: white;
+}
+
 
 @media (max-width:1120px) {
     .task-title {

@@ -9,9 +9,9 @@ function updateProjects(projectArray) {
     projects.innerHTML = "";
     for (let i = 0; i < projectArray.length; i++) {
         projects.appendChild(createProject(i, projectArray[i], projectArray));
-
     }
-   
+    saveProjects(projectArray);
+
 };
 
 function createProject(index, project, projectArray) {
@@ -21,27 +21,54 @@ function createProject(index, project, projectArray) {
     li.setAttribute("index", index);
     ul.appendChild(li);
     li.setAttribute("project", project.title);
-    li.addEventListener("click", ()=>{
+    li.addEventListener("click", () => {
         const title = document.querySelector(".title");
         title.innerText = li.textContent;
-        generateProjectTasks(index,project,projectArray)
+        if (project.tasks.length === 0) {
+            emptyProject(index,project,projectArray);
+            return;
+        }
+        generateProjectTasks(index, project, projectArray)
+
     });
-   
+
     return ul;
 }
 
-function generateProjectTasks (index,project,projectArray) {
+function generateProjectTasks(index, project, projectArray) {
     const taskContainer = document.querySelector(".task-container");
     taskContainer.innerHTML = "";
     const taskArray = project.tasks;
     for (let i = 0; i < taskArray.length; i++) {
         taskContainer.appendChild(createTask(i, taskArray[i]));
     }
-    deleteProjectTask(index,project,projectArray);
+    deleteProjectTask(index, project, projectArray);
     saveProjects(projectArray);
 };
 
-function deleteProjectTask(index,project,projectArray) {
+function emptyProject(index,project,projectArray) {
+    const taskContainer = document.querySelector(".task-container");
+    taskContainer.innerHTML = `<div class="empty-project">
+    <h3>It appears you have no tasks for this Project </h3>
+    <div><button type="button" class="empty-project-btn" id="add-task">Add Task </button>
+    <button type="button" class="empty-project-btn" id="del-project">Delete Project </button></div>
+    </div>`;
+    const deleteProject=document.getElementById("del-project");
+    const addTask=document.getElementById("add-task");
+
+    deleteProject.addEventListener("click", ()=>{
+        projectArray.splice(index,1);
+        updateProjects(projectArray);
+        taskContainer.innerHTML = `<h3>Project ${project.title} Deleted</h3>`;
+    });
+
+    addTask.addEventListener("click",()=>{
+
+    });
+    
+}
+
+function deleteProjectTask(index, project, projectArray) {
     const deleteButton = document.querySelectorAll(".delete");
     let arrayIndex;
     deleteButton.forEach(button => {
@@ -49,8 +76,8 @@ function deleteProjectTask(index,project,projectArray) {
             const taskDiv = button.closest(".tasks");
             arrayIndex = taskDiv.getAttribute("data-index");
             project.tasks.splice(arrayIndex, 1);
-            projectArray.splice(index,1,project);
-            generateProjectTasks(index,project,projectArray);
+            projectArray.splice(index, 1, project);
+            generateProjectTasks(index, project, projectArray);
         });
     });
 }
@@ -94,7 +121,6 @@ function createTask(index, taskArray) {
     const taskTitleDiv = document.createElement("div");
     taskTitleDiv.classList.add("task-title-div");
 
-
     const taskTitle = document.createElement("p");
     taskTitle.classList.add("task-title");
     taskTitle.textContent = taskArray.title;
@@ -114,7 +140,6 @@ function createTask(index, taskArray) {
     date.textContent = formatDate;
     taskDiv.appendChild(date);
 
-
     const editButton = document.createElement('img');
     editButton.src = editImg;
     editButton.alt = 'Edit';
@@ -126,7 +151,6 @@ function createTask(index, taskArray) {
     deleteButton.alt = 'Delete';
     deleteButton.classList.add('modify-btn', 'delete');
     taskDiv.appendChild(deleteButton);
-
 
     return taskDiv;
 }
