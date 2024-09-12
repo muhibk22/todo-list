@@ -1,4 +1,3 @@
-import { initializeTask, initializeProject } from "./display";
 
 function storageAvailable(type) {
     let storage;
@@ -92,5 +91,20 @@ function loadProjects(projectArray) {
 
 
 
+function initializeTask(taskArray) {
+    const todayDate = new Date();
+    const formattedDate = format(todayDate, "yyyy-MM-dd");
+    let task1 = { title: "Do laundry", details: "Wash all clothes", date: formattedDate, priority: "high", status: "incomplete" };
+    let task2 = { title: "Buy groceries", details: "Get milk, eggs, and bread", date: formattedDate, priority: "medium", status: "incomplete" };
+    taskArray.push(task1, task2);
+}
 
+function initializeProject(projectArray) {
+    const todayDate = new Date();
+    const formattedDate = format(todayDate, "yyyy-MM-dd");
+    const task = { title: "Run 5 miles", details: "Run 5 miles early in the morning", date: formattedDate, priority: "high", status: "incomplete" };
+    const project1 = { title: "Marathon Training", tasks: [task,task] };
+    const project2 = { title: "Make a to-do list", tasks: [task] };
+    projectArray.push(project1, project2);
+}
 export { loadTasks, saveToStorage, loadProjects, saveProjects };
