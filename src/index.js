@@ -3,8 +3,8 @@ import "./form.css"
 import navdrop from "./nav";
 import addTask from "./add";
 import { submitTodo, submitProject } from "./submit";
-import { updateProjects, updateTasks, sortByTime,initializeProject } from "./display";
-import { loadTasks, loadProjects, selected } from "./storage";
+import { updateProjects, updateTasks, sortByTime } from "./display";
+import { loadTasks, loadProjects } from "./storage";
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const projectBtn = document.getElementById("submit-project");
     const todoArray = [];
     const projectArray = [];
-    let selectedProject = { title: "", tasks:[]};
 
     navdrop();
     addTask();
@@ -22,8 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadProjects(projectArray);
     updateProjects(projectArray);
     sortByTime(todoArray);
-    selected(selectedProject);
-
 
     todoBtn.addEventListener("click", () => {
         submitTodo(todoArray)

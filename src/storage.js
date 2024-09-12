@@ -72,7 +72,7 @@ function loadProjects(projectArray) {
                 savedProjects = JSON.parse(savedProjects);
                 projectArray.length = 0;
 
-                for (let i=0; i<savedProjects.length; i++){
+                for (let i = 0; i < savedProjects.length; i++) {
                     projectArray.push(savedProjects[i]);
                 };
             }
@@ -81,7 +81,7 @@ function loadProjects(projectArray) {
                 localStorage.removeItem("projects");
             }
         }
-        else{
+        else {
             initializeProject(projectArray);
         }
     }
@@ -91,14 +91,6 @@ function loadProjects(projectArray) {
 }
 
 
-function selected(obj){
-    const target=document.querySelectorAll("li");
-    target.forEach((tar)=>{
-        tar.addEventListener("click",function(){
-            obj.title=tar.getAttribute("project");
-            console.log(obj.title);
-        });
-    });
-}
 
-export { loadTasks, saveToStorage, loadProjects, saveProjects,selected };
+
+export { loadTasks, saveToStorage, loadProjects, saveProjects };

@@ -64,13 +64,20 @@ function createProject(index, projectArray) {
         const taskContainer = document.querySelector(".task-container");
         title.innerText=li.textContent;
         taskContainer.innerHTML="";
-    })
+        const taskArray=projectArray.tasks;
+        for (let i=0; i<taskArray.length;i++){
+            taskContainer.appendChild(createTask(i, taskArray[i]));
+        }
+    });
     return ul;
 }
 
 
 function initializeProject(projectArray) {
-    const project1={title: "Marathon Training", tasks: []};
+    const todayDate= new Date();
+    const formattedDate=format(todayDate,"yyyy-MM-dd");
+    const task = { title: "Run 5 miles", details: "Run 5 miles early in the morning", date: formattedDate, priority: "high", status: "incomplete" };
+    const project1={title: "Marathon Training", tasks: [task]};
     const project2={title: "Make a to-do list", tasks: []};
     projectArray.push(project1, project2);
 }
@@ -92,8 +99,6 @@ function deleteTask(todoArray) {
 
 
 function initializeTask(taskArray) {
-    const todayDate= new Date();
-    const formattedDate=format(todayDate,"yyyy-MM-dd");
     let task1 = { title: "Do laundry", details: "Wash all clothes", date: formattedDate, priority: "high", status: "incomplete" };
     let task2 = { title: "Buy groceries", details: "Get milk, eggs, and bread", date: formattedDate, priority: "medium", status: "incomplete" };
     taskArray.push(task1, task2);
@@ -112,9 +117,8 @@ function updateTasks(taskArray) {
 
 
 function createTask(index, taskArray) {
-
-    const taskDiv = document.createElement('div');
-    taskDiv.classList.add('tasks');
+    const taskDiv = document.createElement("div");
+    taskDiv.classList.add("tasks");
     taskDiv.setAttribute('data-index', index);
 
     const checkbox = document.createElement('input');
