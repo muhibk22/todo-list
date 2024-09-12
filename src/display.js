@@ -40,12 +40,6 @@ function sortByTime(taskArray){
     });
 }
 
-function sortByProject(projectArray){
-    const projects=document.querySelector(".projects");
-   
-
-
-}
 
 function updateProjects(projectArray) {
     const projects = document.querySelector(".projects");
@@ -58,15 +52,14 @@ function updateProjects(projectArray) {
 
 
 
-function createProject(index, projectArray) {
+function createProject(index, project) {
     const ul = document.createElement("ul");
     const li = document.createElement("li");
-    li.innerText = projectArray;
+    li.innerText = project;
     li.setAttribute("index", index);
     ul.appendChild(li);
-
+    li.setAttribute("project",project);
     li.addEventListener("click",function(){
-        const targetIndex=li.getAttribute("index");
         const title=document.querySelector(".title");
         title.innerText=li.textContent;
         
@@ -74,6 +67,8 @@ function createProject(index, projectArray) {
     return ul;
     
 }
+
+
 
 function initializeProject(projectArray) {
     projectArray.push("Marathon Training", "Make a to-do list");

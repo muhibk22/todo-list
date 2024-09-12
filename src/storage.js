@@ -90,6 +90,13 @@ function loadProjects(projectArray) {
 }
 
 
+function selected(obj){
+    const target=document.querySelectorAll("li");
+    target.forEach((tar)=>{
+        tar.addEventListener("click",function(){
+            obj.title=tar.getAttribute("project");
+        });
+    });
+}
 
-
-export { loadTasks, saveToStorage, loadProjects, saveProjects };
+export { loadTasks, saveToStorage, loadProjects, saveProjects,selected };
