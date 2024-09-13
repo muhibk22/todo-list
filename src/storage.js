@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { ta } from 'date-fns/locale/ta';
 
 function storageAvailable(type) {
     let storage;
@@ -108,4 +109,14 @@ function initializeProject(projectArray) {
     const project2 = { title: "Make a to-do list", tasks: [] };
     projectArray.push(project1, project2);
 }
-export { loadTasks, saveToStorage, loadProjects, saveProjects };
+
+function changeStatus(taskArray,index){
+    taskArray[index].status = taskArray[index].status === "incomplete" ? "complete" : "incomplete";
+    saveToStorage(taskArray);
+}
+
+function changeStatusProject(taskArray, index, projectArray){
+    taskArray[index].status = taskArray[index].status === "incomplete" ? "complete" : "incomplete";
+    saveProjects(projectArray);
+}
+export { loadTasks, saveToStorage, loadProjects, saveProjects, changeStatus, changeStatusProject };

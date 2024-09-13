@@ -1,6 +1,6 @@
 import editImg from "./images/pencil.svg";
 import deleteImg from "./images/delete.svg";
-import { saveToStorage, saveProjects } from "./storage";
+import { saveToStorage, saveProjects, changeStatus, changeStatusProject } from "./storage";
 import { format, add } from 'date-fns';
 
 
@@ -45,6 +45,8 @@ function generateProjectTasks(index, project, projectArray) {
     deleteProjectTask(index, project, projectArray);
     saveProjects(projectArray);
     details(taskArray);
+    edit(taskArray);
+    checkmark(taskArray,projectArray);
 };
 
 function emptyProject(index,project,projectArray) {
@@ -66,6 +68,10 @@ function emptyProject(index,project,projectArray) {
     addTask.addEventListener("click",()=>{
         const form=document.querySelector(".form-container");
         form.classList.remove("hide");
+        const formFields = form.querySelectorAll('input, select, textarea, date');
+        formFields.forEach((field) => {
+            field.disabled = false;
+        });
     });
     
 }
@@ -100,7 +106,6 @@ function deleteTask(todoArray) {
 
 
 function updateTasks(taskArray) {
-    console.log("tset");
     const taskContainer = document.querySelector(".task-container");
     taskContainer.innerHTML = "";
 
@@ -110,6 +115,8 @@ function updateTasks(taskArray) {
     saveToStorage(taskArray);
     deleteTask(taskArray);
     details(taskArray);
+    edit(taskArray);
+    checkmark(taskArray)
 }
 
 function createTask(index, taskArray) {
@@ -155,6 +162,11 @@ function createTask(index, taskArray) {
     deleteButton.alt = 'Delete';
     deleteButton.classList.add('modify-btn', 'delete');
     taskDiv.appendChild(deleteButton);
+
+    if (taskArray.status==="complete"){
+        checkbox.checked = true;
+        taskTitle.style.opacity="0.5";
+    }
 
     return taskDiv;
 }
@@ -240,4 +252,38 @@ function details(taskArray) {
     });
 }
 
+function edit (taskArray){
+    const editButton=document.querySelectorAll(".edit");
+    editButton.forEach((edit)=>{
+        edit.addEventListener("click", editTask)
+    });
+    function editTask(){
+        console.log("hello world");
+    }
+}
+
+function checkmark(taskArray, projectArray = null) {
+    const checkbox = document.querySelectorAll(".checkbox");
+    
+    checkbox.forEach((checkButton) => {
+        checkButton.addEventListener("click", () => {
+            const parentContainer = checkButton.closest(".tasks");
+            const index = parentContainer.getAttribute("data-index");
+            const taskTitle = parentContainer.querySelector(".task-title");
+
+            // If projectArray is passed, use the second logic
+            if (projectArray) {
+                changeStatusProject(taskArray, index, projectArray);
+            } else {
+                changeStatus(taskArray, index);
+            }
+
+            if (taskArray[index].status === "complete") {
+                taskTitle.style.opacity = "0.5";
+            } else {
+                taskTitle.style.opacity = "1";
+            }
+        });
+    });
+}
 export { updateProjects, updateTasks, sortByTime, updateSelected, details };
