@@ -63,7 +63,8 @@ function emptyProject(index,project,projectArray) {
     });
 
     addTask.addEventListener("click",()=>{
-
+        const form=document.querySelector(".form-container");
+        form.classList.remove("hide");
     });
     
 }
@@ -192,4 +193,23 @@ function sortByTime(taskArray) {
     });
 }
 
-export { updateProjects, updateTasks, sortByTime };
+function updateSelected(selecedProject){
+    const li=document.querySelectorAll("li");
+    li.forEach((list=>{
+        list.addEventListener("click", ()=>{
+            const index=list.getAttribute("index");
+            if (!index){
+                selecedProject.index=null;
+                console.log(index);
+                console.log(selecedProject.index);
+            }
+            else {
+                selecedProject.index=index;
+                console.log(selecedProject.index);
+            }
+        })
+    }))
+  
+}
+
+export { updateProjects, updateTasks, sortByTime, updateSelected };

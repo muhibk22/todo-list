@@ -14,6 +14,10 @@ export default function addTask(){
     });
     add.addEventListener("click",function(){
         form.classList.remove("hide");
+        const formFields = form.querySelectorAll('input, select, textarea, date');
+        formFields.forEach((field) => {
+            field.disabled = false;
+        });
     });
 
     task.addEventListener("click",function(){

@@ -6,9 +6,8 @@ function submitTodo(todoArray){
     const todoDate=document.getElementById("dueDate").value;
     const form=document.querySelector(".form-container");
     let selectedPriority="Low";
+
     const priorityButton=document.querySelectorAll(".priority-btn");
-
-
     const todoTitleCheck=document.getElementById("todo-title").value.trim();
 
     if (!todoTitleCheck){
@@ -32,8 +31,13 @@ function submitTodo(todoArray){
         priority: selectedPriority,
         status: 'incomplete' 
     };
+
     todoArray.push(todo);
     todoForm.reset();
+    const formFields = form.querySelectorAll('input, select, textarea, date');
+    formFields.forEach((field) => {
+        field.disabled = true;
+    });
     form.classList.add("hide");
 
 }
@@ -53,7 +57,17 @@ function submitProject(projectArray){
     const project={title: projectTitle, tasks: []};
     projectArray.push(project);
     projectForm.reset();
+    const formFields = form.querySelectorAll('input, select, textarea');
+    formFields.forEach((field) => {
+        field.disabled = true;
+    });
     form.classList.add("hide");
 }
 
-export {submitTodo,submitProject};
+function submitTask(projectArray,selecedProject){
+    const index=selecedProject.index;
+    submitTodo(projectArray[index].tasks);
+
+}
+
+export {submitTodo,submitProject, submitTask};

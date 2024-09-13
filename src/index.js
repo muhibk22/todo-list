@@ -2,8 +2,8 @@ import "./styles.css";
 import "./form.css"
 import navdrop from "./nav";
 import addTask from "./add";
-import { submitTodo, submitProject } from "./submit";
-import { updateProjects, updateTasks, sortByTime } from "./display";
+import { submitTodo, submitProject, submitTask} from "./submit";
+import { updateProjects, updateTasks, sortByTime, updateSelected, emptyProject } from "./display";
 import { loadTasks, loadProjects } from "./storage";
 
 
@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const projectBtn = document.getElementById("submit-project");
     const todoArray = [];
     const projectArray = [];
+    let selecedProject = {index: null };
 
     navdrop();
     addTask();
@@ -21,9 +22,15 @@ document.addEventListener("DOMContentLoaded", function () {
     loadProjects(projectArray);
     updateProjects(projectArray);
     sortByTime(todoArray);
+    updateSelected(selecedProject);
 
     todoBtn.addEventListener("click", () => {
-        submitTodo(todoArray)
+        if (selecedProject.index===null){
+            submitTodo(todoArray);
+        }
+        else {
+            submitTask(projectArray, selecedProject);
+        }
         updateTasks(todoArray);
     });
     projectBtn.addEventListener("click", () => {
