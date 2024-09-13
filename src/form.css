@@ -46,7 +46,9 @@
     background-color: transparent;
     border: none;
     margin-right: 28px;
+    cursor: pointer;
 }
+
 
 .sidebar-form {
     display: flex;
@@ -191,9 +193,7 @@ input[type="date"] {
     display: none;
 }
 
-#close-form{
-    cursor: pointer;
-}
+
 
 @media (max-width:570px) {
     .sidebar-form {

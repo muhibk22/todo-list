@@ -3,7 +3,7 @@ import "./form.css"
 import navdrop from "./nav";
 import addTask from "./add";
 import { submitTodo, submitProject, submitTask} from "./submit";
-import { updateProjects, updateTasks, sortByTime, updateSelected, emptyProject } from "./display";
+import { updateProjects, updateTasks, sortByTime, updateSelected} from "./display";
 import { loadTasks, loadProjects } from "./storage";
 
 

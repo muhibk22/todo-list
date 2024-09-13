@@ -304,6 +304,76 @@ body {
     color: white;
 }
 
+.detail-container{
+    background-color: rgb(80, 79, 79);
+    border: 4px solid black;
+    color: white;
+    width:90%;
+    max-width: 600px;
+    min-height: 300px;
+    max-height: 90vh;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+}
+
+#close-details {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    margin-right:10px;
+    margin-top: 5px;
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    left: 90%;
+}
+
+.detail-card{
+    display: flex;
+    position: relative;
+    min-width: 100%;
+    min-height: 100%;
+    flex-grow: 1;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.detail-heading h2{
+    margin: 5px;
+}
+.detail-heading{
+    width: 80%;
+    word-wrap: break-word; 
+    white-space: normal; 
+    overflow-wrap: break-word; 
+}
+.detail-content{
+    text-align: left;
+    word-wrap: break-word; 
+    white-space: normal; 
+    overflow-wrap: break-word; 
+    overflow-y: scroll;
+    width: 100%;
+}
+.detail-content p{
+    margin: 6px;
+}
+
+.high{
+    color:rgb(255, 30, 30);
+}
+.medium{
+    color:rgb(234, 113, 0);
+}
+.low {
+    color: rgb(2, 120, 45);
+}
 
 @media (max-width:1120px) {
     .task-title {
@@ -397,6 +467,10 @@ body {
     .details {
         font-size: 10px;
         padding: 2px 4px;
+    }
+
+    .detail-heading h2{
+        font-size: 1.3rem;
     }
 
     .date {

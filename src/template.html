@@ -41,6 +41,18 @@
             </div>
         </main>
     </div>
+    <div class="detail-container">
+        <div class="detail-card">
+            <button type="button" id="close-details"><img src="images/window-close.svg" class="close-btn"></button>
+            <div class="detail-heading"><h2>helloooooooooooooooooooooooooo</h2></div>
+            <div class="detail-content">
+                <p><b>Details:</b> </p>
+                <p><b>Priority:</b> <span class="high"></span></p>
+                <p><b>Due Date:</b> </p>
+                <p><b>Status:</b> </p>
+            </div>
+        </div>
+    </div>
     <div class="form-container hide">
         <div class="card">
             <div class="form-header">
@@ -60,15 +72,12 @@
                             <span>Due Date:</span>
                             <input type="date" id="dueDate" name="dueDate" required>
                         </div>
-
                         <div class="priority">
                             <span>Priority:</span>
-
                             <button type="button" id="low" class="priority-btn">Low</button>
                             <button type="button" id="medium" class="priority-btn">Medium</button>
                             <button type="button" id="high" class="priority-btn">High</button>
                         </div>
-
                         <input type="submit" id="submit-todo" class="submit" value="Add">
                     </form>
                     <form id="project-form" class="hide">

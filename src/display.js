@@ -44,6 +44,7 @@ function generateProjectTasks(index, project, projectArray) {
     }
     deleteProjectTask(index, project, projectArray);
     saveProjects(projectArray);
+    details();
 };
 
 function emptyProject(index,project,projectArray) {
@@ -107,6 +108,7 @@ function updateTasks(taskArray) {
     }
     saveToStorage(taskArray);
     deleteTask(taskArray);
+    details();
 }
 
 function createTask(index, taskArray) {
@@ -178,6 +180,7 @@ function sortByTime(taskArray) {
                 taskContainer.appendChild(createTask(i, taskArray[i]));
             }
         }
+        details();
     });
 
     week.addEventListener("click", function () {
@@ -190,6 +193,7 @@ function sortByTime(taskArray) {
                 taskContainer.appendChild(createTask(i, taskArray[i]));
             }
         }
+        details();
     });
 }
 
@@ -200,16 +204,21 @@ function updateSelected(selecedProject){
             const index=list.getAttribute("index");
             if (!index){
                 selecedProject.index=null;
-                console.log(index);
-                console.log(selecedProject.index);
             }
             else {
                 selecedProject.index=index;
-                console.log(selecedProject.index);
             }
         })
-    }))
-  
+    }));
 }
 
-export { updateProjects, updateTasks, sortByTime, updateSelected };
+function details(){
+    const detailsButton=document.querySelectorAll(".details");
+    detailsButton.forEach((detail)=>{
+        detail.addEventListener("click", function(){
+            console.log("hello world");
+        })
+    })
+}
+
+export { updateProjects, updateTasks, sortByTime, updateSelected, details };
