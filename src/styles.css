@@ -310,7 +310,7 @@ body {
     color: white;
     width:90%;
     max-width: 600px;
-    min-height: 300px;
+    min-height: 200px;
     max-height: 90vh;
     border-radius: 5px;
     position: absolute;
@@ -360,18 +360,22 @@ body {
     overflow-wrap: break-word; 
     overflow-y: scroll;
     width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .detail-content p{
     margin: 6px;
 }
 
-.high{
+.High{
     color:rgb(255, 30, 30);
 }
-.medium{
+.Medium{
     color:rgb(234, 113, 0);
 }
-.low {
+.Low {
     color: rgb(2, 120, 45);
 }
 

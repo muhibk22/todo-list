@@ -44,7 +44,7 @@ function generateProjectTasks(index, project, projectArray) {
     }
     deleteProjectTask(index, project, projectArray);
     saveProjects(projectArray);
-    details();
+    details(taskArray);
 };
 
 function emptyProject(index,project,projectArray) {
@@ -100,6 +100,7 @@ function deleteTask(todoArray) {
 
 
 function updateTasks(taskArray) {
+    console.log("tset");
     const taskContainer = document.querySelector(".task-container");
     taskContainer.innerHTML = "";
 
@@ -108,7 +109,7 @@ function updateTasks(taskArray) {
     }
     saveToStorage(taskArray);
     deleteTask(taskArray);
-    details();
+    details(taskArray);
 }
 
 function createTask(index, taskArray) {
@@ -180,7 +181,7 @@ function sortByTime(taskArray) {
                 taskContainer.appendChild(createTask(i, taskArray[i]));
             }
         }
-        details();
+        details(taskArray);
     });
 
     week.addEventListener("click", function () {
@@ -193,7 +194,7 @@ function sortByTime(taskArray) {
                 taskContainer.appendChild(createTask(i, taskArray[i]));
             }
         }
-        details();
+        details(taskArray);
     });
 }
 
@@ -212,13 +213,31 @@ function updateSelected(selecedProject){
     }));
 }
 
-function details(){
-    const detailsButton=document.querySelectorAll(".details");
-    detailsButton.forEach((detail)=>{
-        detail.addEventListener("click", function(){
-            console.log("hello world");
-        })
+function details(taskArray) {
+    const detailButton=document.querySelectorAll(".details");
+    const detailContainer = document.querySelector(".detail-container");
+    const closeButton = document.getElementById("close-details");
+    const detailTitle=document.querySelector(".detail-title");
+    const detailContent=document.querySelector(".detail-content");
+
+    detailButton.forEach((detail)=>{
+        detail.addEventListener("click",(event)=>showDetails(event));
     })
+    function showDetails() {
+        detailContainer.classList.remove("hide");
+        const parentContainer = event.target.closest(".tasks");
+        const index=parentContainer.getAttribute("data-index");
+        detailTitle.innerText=taskArray[index].title;
+        detailContent.innerHTML="";
+        detailContent.innerHTML=`<p><b>Details: </b>${taskArray[index].details}  </p>
+                <p><b>Priority:</b> <span class="${taskArray[index].priority}"> ${taskArray[index].priority}</span></p>
+                <p><b>Due Date:</b> ${taskArray[index].date}</p>
+                <p><b>Status:</b> ${taskArray[index].status} </p>`;
+    };
+
+    closeButton.addEventListener("click", () => {
+        detailContainer.classList.add("hide");
+    });
 }
 
 export { updateProjects, updateTasks, sortByTime, updateSelected, details };

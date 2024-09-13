@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
         else {
             submitTask(projectArray, selecedProject);
         }
-        updateTasks(todoArray);
     });
     projectBtn.addEventListener("click", () => {
         submitProject(projectArray)
