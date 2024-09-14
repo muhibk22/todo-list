@@ -1,4 +1,3 @@
-import { updateTasks } from "./display";
 
 function submitTodo(todoArray){
     const todoForm=document.getElementById("todo-form");
@@ -40,7 +39,6 @@ function submitTodo(todoArray){
         field.disabled = true;
     });
     form.classList.add("hide");
-    updateTasks(todoArray);
 
 }
 
@@ -66,9 +64,10 @@ function submitProject(projectArray){
     form.classList.add("hide");
 }
 
-function submitTask(projectArray, selecedProject){
-    const index=selecedProject.index;
+function submitTask(projectArray, selectedProject){
+    const index=selectedProject.index;
     submitTodo(projectArray[index].tasks);
+    console.log(selectedProject.index);
 }
 
 export {submitTodo,submitProject, submitTask};

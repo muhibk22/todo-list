@@ -1,5 +1,4 @@
 import { format } from 'date-fns';
-import { ta } from 'date-fns/locale/ta';
 
 function storageAvailable(type) {
     let storage;

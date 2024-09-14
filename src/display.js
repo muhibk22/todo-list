@@ -11,7 +11,6 @@ function updateProjects(projectArray) {
         projects.appendChild(createProject(i, projectArray[i], projectArray));
     }
     saveProjects(projectArray);
-
 };
 
 function createProject(index, project, projectArray) {
@@ -286,4 +285,4 @@ function checkmark(taskArray, projectArray = null) {
         });
     });
 }
-export { updateProjects, updateTasks, sortByTime, updateSelected, details };
+export { updateProjects, updateTasks, sortByTime, updateSelected, details, generateProjectTasks };

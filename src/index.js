@@ -3,7 +3,7 @@ import "./form.css"
 import navdrop from "./nav";
 import addTask from "./add";
 import { submitTodo, submitProject, submitTask} from "./submit";
-import { updateProjects, updateTasks, sortByTime, updateSelected} from "./display";
+import { updateProjects, updateTasks, sortByTime, updateSelected, generateProjectTasks} from "./display";
 import { loadTasks, loadProjects } from "./storage";
 
 
@@ -27,13 +27,16 @@ document.addEventListener("DOMContentLoaded", function () {
     todoBtn.addEventListener("click", () => {
         if (selecedProject.index===null){
             submitTodo(todoArray);
+            updateTasks(todoArray);
         }
         else {
             submitTask(projectArray, selecedProject);
+            generateProjectTasks(selecedProject.index, projectArray[selecedProject.index], projectArray);
         }
     });
     projectBtn.addEventListener("click", () => {
-        submitProject(projectArray)
+        submitProject(projectArray);
         updateProjects(projectArray);
+        updateSelected(selecedProject);
     });
 });
