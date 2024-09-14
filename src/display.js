@@ -1,7 +1,7 @@
 import editImg from "./images/pencil.svg";
 import deleteImg from "./images/delete.svg";
 import { saveToStorage, saveProjects, changeStatus, changeStatusProject } from "./storage";
-import { editTask } from "./submit";
+import { editTask , editTaskProject} from "./submit";
 import { format, add } from 'date-fns';
 
 
@@ -24,6 +24,7 @@ function createProject(index, project, projectArray) {
     li.addEventListener("click", () => {
         const title = document.querySelector(".title");
         title.innerText = li.textContent;
+        title.setAttribute("index", index);
         if (project.tasks.length === 0) {
             emptyProject(index, project, projectArray);
             return;
@@ -45,7 +46,7 @@ function generateProjectTasks(index, project, projectArray) {
     deleteProjectTask(index, project, projectArray);
     saveProjects(projectArray);
     details(taskArray);
-    edit(taskArray);
+    edit(taskArray, projectArray);
     checkmark(taskArray, projectArray);
 };
 
@@ -265,12 +266,11 @@ function edit(taskArray, projectArray = null) {
             formFields.forEach((field) => {
                 field.disabled = false;
             });
-            if (projectArray) {
-                //editProjectTask(index, taskArray, projectArray);
+            if (projectArray){
+                editTaskProject(index, taskArray, projectArray);
             }
-            else {
-                editTask(index, taskArray);
-                console.log("comes back");
+            else{
+                editTask(index,taskArray);
             }
         });
     });

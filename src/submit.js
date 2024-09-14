@@ -1,4 +1,4 @@
-import { updateTasks } from "./display";
+import { generateProjectTasks, updateTasks } from "./display";
 
 function submitTodo(todoArray) {
     const todoForm = document.getElementById("todo-form");
@@ -95,8 +95,9 @@ function editTask(index, taskArray) {
             button.classList.add("selected");
         });
     });
-    
-    editForm.addEventListener("submit",function(event){
+
+
+    function handleSubmit(event) {
         event.preventDefault();
         taskArray[index] = {
             title: todoTitle.value,
@@ -107,17 +108,68 @@ function editTask(index, taskArray) {
         };
 
         console.log("Task updated:", taskArray[index]);
-        
+
         editForm.reset();
         form.classList.add("hide");
         const formFields = form.querySelectorAll('input, select, textarea, date');
         formFields.forEach((field) => {
             field.disabled = true;
         });
-
         updateTasks(taskArray);
-    });
-
+        editForm.removeEventListener("submit", handleSubmit);
+    }
+    editForm.addEventListener("submit", () => handleSubmit(event));
 }
 
-export { submitTodo, submitProject, submitTask, editTask };
+function editTaskProject(index, taskArray, projectArray) {
+    const form = document.querySelector(".edit-container");
+    const editForm = document.getElementById("edit-form");
+    const todoTitle = document.getElementById("edit-title");
+    const todoDetail = document.getElementById("edit-detail");
+    const todoDate = document.getElementById("edit-dueDate");
+    const priorityButton = document.querySelectorAll(".priority-btn");
+    const projectIndex = document.querySelector(".title").getAttribute("index");
+
+    let selectedPriority = taskArray[index].priority;
+    todoTitle.value = taskArray[index].title;
+    todoDetail.value = taskArray[index].details;
+    todoDate.value = taskArray[index].date;
+
+    priorityButton.forEach(button => {
+        button.classList.remove("selected");
+        if (button.textContent === selectedPriority) {
+            button.classList.add("selected");
+        }
+        button.addEventListener("click", () => {
+            selectedPriority = button.textContent;
+            priorityButton.forEach(btn => btn.classList.remove("selected"));
+            button.classList.add("selected");
+        });
+    });
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        projectArray[projectIndex].tasks[index] = {
+            title: todoTitle.value,
+            details: todoDetail.value,
+            date: todoDate.value,
+            priority: selectedPriority,
+            status: taskArray[index].status
+        };
+
+        console.log("Project updated:", taskArray[index]);
+
+        editForm.reset();
+        form.classList.add("hide");
+        const formFields = form.querySelectorAll('input, select, textarea, date');
+        formFields.forEach((field) => {
+            field.disabled = true;
+        });
+        generateProjectTasks(projectIndex, projectArray[projectIndex], projectArray);
+        editForm.removeEventListener("submit", handleSubmit);
+    }
+
+    editForm.addEventListener("submit", () => handleSubmit(event));
+
+}
+export { submitTodo, submitProject, submitTask, editTask, editTaskProject };
