@@ -20,6 +20,7 @@ export default function addTask() {
         projectForm.reset();
         taskForm.reset();
     });
+    
     add.addEventListener("click", function () {
         const priorityButton = document.querySelectorAll(".priority-btn");
         const formFields = form.querySelectorAll('input, select, textarea, date');

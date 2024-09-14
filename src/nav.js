@@ -14,6 +14,28 @@ export default function navdrop(){
         }
     }
     navButton.addEventListener("click",toggleNav);
-    
+   
 }
 
+export function closeNav(){
+    const li= document.querySelectorAll("li");
+    const sidebar=document.querySelector(".sidebar");
+    const navButton=document.getElementById("navigation");
+
+    li.forEach((list)=>{
+        list.removeEventListener("click", closeBar);
+        list.addEventListener("click", closeBar);
+    });
+ 
+    
+    function closeBar(){
+        sidebar.classList.toggle("show");
+        if (navButton.textContent=="☰"){
+            navButton.innerHTML=`<img src="${closeImg}"/>`;
+
+        }
+        else{
+            navButton.innerHTML=`&#9776;`;
+        }
+    }
+}

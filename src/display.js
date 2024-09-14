@@ -3,6 +3,7 @@ import deleteImg from "./images/delete.svg";
 import { saveToStorage, saveProjects, changeStatus, changeStatusProject } from "./storage";
 import { editTask , editTaskProject} from "./submit";
 import { format, add } from 'date-fns';
+import { closeNav } from "./nav";
 
 
 function updateProjects(projectArray) {
@@ -12,6 +13,7 @@ function updateProjects(projectArray) {
         projects.appendChild(createProject(i, projectArray[i], projectArray));
     }
     saveProjects(projectArray);
+    closeNav();
 };
 
 function createProject(index, project, projectArray) {

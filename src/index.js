@@ -2,6 +2,7 @@ import "./styles.css";
 import "./form.css"
 import navdrop from "./nav";
 import addTask from "./add";
+import { closeNav } from "./nav";
 import { submitTodo, submitProject, submitTask} from "./submit";
 import { updateProjects, updateTasks, sortByTime, updateSelected, generateProjectTasks} from "./display";
 import { loadTasks, loadProjects } from "./storage";
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     navdrop();
     addTask();
+    closeNav();
 
     loadTasks(todoArray);
     updateTasks(todoArray);
