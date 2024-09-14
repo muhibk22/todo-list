@@ -287,7 +287,6 @@ function checkmark(taskArray, projectArray = null) {
             const parentContainer = checkButton.closest(".tasks");
             const index = parentContainer.getAttribute("data-index");
             const taskTitle = parentContainer.querySelector(".task-title");
-
             if (projectArray) {
                 changeStatusProject(taskArray, index, projectArray);
             }

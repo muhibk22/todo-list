@@ -121,7 +121,7 @@ function editTask(index, taskArray) {
     editForm.addEventListener("submit", () => handleSubmit(event));
 }
 
-function editTaskProject(index, taskArray, projectArray) {
+function editTaskProject(index,taskArray, projectArray) {
     const form = document.querySelector(".edit-container");
     const editForm = document.getElementById("edit-form");
     const todoTitle = document.getElementById("edit-title");
@@ -129,7 +129,7 @@ function editTaskProject(index, taskArray, projectArray) {
     const todoDate = document.getElementById("edit-dueDate");
     const priorityButton = document.querySelectorAll(".priority-btn");
     const projectIndex = document.querySelector(".title").getAttribute("index");
-
+    console.log(index);
     let selectedPriority = taskArray[index].priority;
     todoTitle.value = taskArray[index].title;
     todoDetail.value = taskArray[index].details;
