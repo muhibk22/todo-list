@@ -10,4 +10,5 @@ Project-based task organization
 Responsive design for various screen sizes
 
 [Live Demo](https://muhibk22.github.io/todo-list/) 👈
-![alt text](image.png)
+
+![alt text](image-1.png)
