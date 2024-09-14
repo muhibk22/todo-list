@@ -1,6 +1,7 @@
 import editImg from "./images/pencil.svg";
 import deleteImg from "./images/delete.svg";
 import { saveToStorage, saveProjects, changeStatus, changeStatusProject } from "./storage";
+import { editTask } from "./submit";
 import { format, add } from 'date-fns';
 
 
@@ -24,7 +25,7 @@ function createProject(index, project, projectArray) {
         const title = document.querySelector(".title");
         title.innerText = li.textContent;
         if (project.tasks.length === 0) {
-            emptyProject(index,project,projectArray);
+            emptyProject(index, project, projectArray);
             return;
         }
         generateProjectTasks(index, project, projectArray)
@@ -45,34 +46,34 @@ function generateProjectTasks(index, project, projectArray) {
     saveProjects(projectArray);
     details(taskArray);
     edit(taskArray);
-    checkmark(taskArray,projectArray);
+    checkmark(taskArray, projectArray);
 };
 
-function emptyProject(index,project,projectArray) {
+function emptyProject(index, project, projectArray) {
     const taskContainer = document.querySelector(".task-container");
     taskContainer.innerHTML = `<div class="empty-project">
     <h3>It appears you have no tasks for this Project </h3>
     <div><button type="button" class="empty-project-btn" id="add-task">Add Task </button>
     <button type="button" class="empty-project-btn" id="del-project">Delete Project </button></div>
     </div>`;
-    const deleteProject=document.getElementById("del-project");
-    const addTask=document.getElementById("add-task");
+    const deleteProject = document.getElementById("del-project");
+    const addTask = document.getElementById("add-task");
 
-    deleteProject.addEventListener("click", ()=>{
-        projectArray.splice(index,1);
+    deleteProject.addEventListener("click", () => {
+        projectArray.splice(index, 1);
         updateProjects(projectArray);
         taskContainer.innerHTML = `<h3>Project ${project.title} Deleted</h3>`;
     });
 
-    addTask.addEventListener("click",()=>{
-        const form=document.querySelector(".form-container");
+    addTask.addEventListener("click", () => {
+        const form = document.querySelector(".form-container");
         form.classList.remove("hide");
         const formFields = form.querySelectorAll('input, select, textarea, date');
         formFields.forEach((field) => {
             field.disabled = false;
         });
     });
-    
+
 }
 
 function deleteProjectTask(index, project, projectArray) {
@@ -162,9 +163,9 @@ function createTask(index, taskArray) {
     deleteButton.classList.add('modify-btn', 'delete');
     taskDiv.appendChild(deleteButton);
 
-    if (taskArray.status==="complete"){
+    if (taskArray.status === "complete") {
         checkbox.checked = true;
-        taskTitle.style.opacity="0.5";
+        taskTitle.style.opacity = "0.5";
     }
 
     return taskDiv;
@@ -209,38 +210,38 @@ function sortByTime(taskArray) {
     });
 }
 
-function updateSelected(selecedProject){
-    const li=document.querySelectorAll("li");
-    li.forEach((list=>{
-        list.addEventListener("click", ()=>{
-            const index=list.getAttribute("index");
-            if (!index){
-                selecedProject.index=null;
+function updateSelected(selecedProject) {
+    const li = document.querySelectorAll("li");
+    li.forEach((list => {
+        list.addEventListener("click", () => {
+            const index = list.getAttribute("index");
+            if (!index) {
+                selecedProject.index = null;
             }
             else {
-                selecedProject.index=index;
+                selecedProject.index = index;
             }
         })
     }));
 }
 
 function details(taskArray) {
-    const detailButton=document.querySelectorAll(".details");
+    const detailButton = document.querySelectorAll(".details");
     const detailContainer = document.querySelector(".detail-container");
     const closeButton = document.getElementById("close-details");
-    const detailTitle=document.querySelector(".detail-title");
-    const detailContent=document.querySelector(".detail-content");
+    const detailTitle = document.querySelector(".detail-title");
+    const detailContent = document.querySelector(".detail-content");
 
-    detailButton.forEach((detail)=>{
-        detail.addEventListener("click",(event)=>showDetails(event));
+    detailButton.forEach((detail) => {
+        detail.addEventListener("click", (event) => showDetails(event));
     })
     function showDetails() {
         detailContainer.classList.remove("hide");
         const parentContainer = event.target.closest(".tasks");
-        const index=parentContainer.getAttribute("data-index");
-        detailTitle.innerText=taskArray[index].title;
-        detailContent.innerHTML="";
-        detailContent.innerHTML=`<p><b>Details: </b>${taskArray[index].details}  </p>
+        const index = parentContainer.getAttribute("data-index");
+        detailTitle.innerText = taskArray[index].title;
+        detailContent.innerHTML = "";
+        detailContent.innerHTML = `<p><b>Details: </b>${taskArray[index].details}  </p>
                 <p><b>Priority:</b> <span class="${taskArray[index].priority}"> ${taskArray[index].priority}</span></p>
                 <p><b>Due Date:</b> ${taskArray[index].date}</p>
                 <p><b>Status:</b> ${taskArray[index].status} </p>`;
@@ -251,29 +252,46 @@ function details(taskArray) {
     });
 }
 
-function edit (taskArray){
-    const editButton=document.querySelectorAll(".edit");
-    editButton.forEach((edit)=>{
-        edit.addEventListener("click", editTask)
+function edit(taskArray, projectArray = null) {
+    const editButton = document.querySelectorAll(".edit");
+    const form = document.querySelector(".edit-container");
+    editButton.forEach((edit) => {
+        edit.addEventListener("click", function () {
+            const parentContainer = edit.closest(".tasks");
+            const index = parentContainer.getAttribute("data-index");
+            form.classList.remove("hide");
+
+            const formFields = form.querySelectorAll('input, select, textarea, date');
+            formFields.forEach((field) => {
+                field.disabled = false;
+            });
+            if (projectArray) {
+                //editProjectTask(index, taskArray, projectArray);
+            }
+            else {
+                editTask(index, taskArray);
+                console.log("comes back");
+            }
+        });
     });
-    function editTask(){
-        console.log("hello world");
-    }
+
 }
+
+
 
 function checkmark(taskArray, projectArray = null) {
     const checkbox = document.querySelectorAll(".checkbox");
-    
+
     checkbox.forEach((checkButton) => {
         checkButton.addEventListener("click", () => {
             const parentContainer = checkButton.closest(".tasks");
             const index = parentContainer.getAttribute("data-index");
             const taskTitle = parentContainer.querySelector(".task-title");
 
-            // If projectArray is passed, use the second logic
             if (projectArray) {
                 changeStatusProject(taskArray, index, projectArray);
-            } else {
+            }
+            else {
                 changeStatus(taskArray, index);
             }
 

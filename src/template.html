@@ -36,7 +36,7 @@
             <div class="content">
                 <h1 class="title">Tasks- All Time</h1>
                 <div class="task-container">
-                    
+
                 </div>
             </div>
         </main>
@@ -44,15 +44,15 @@
     <div class="detail-container hide">
         <div class="detail-card">
             <button type="button" id="close-details"><img src="images/window-close.svg" class="close-btn"></button>
-            <div class="detail-heading"><h2 class="detail-title"></h2></div>
+            <div class="detail-heading">
+                <h2 class="detail-title"></h2>
+            </div>
             <div class="detail-content">
-                <p><b>Details:</b> </p>
-                <p><b>Priority:</b> <span class="high"></span></p>
-                <p><b>Due Date:</b> </p>
-                <p><b>Status:</b> </p>
+
             </div>
         </div>
     </div>
+
     <div class="form-container hide">
         <div class="card">
             <div class="form-header">
@@ -74,15 +74,43 @@
                         </div>
                         <div class="priority">
                             <span>Priority:</span>
-                            <button type="button" id="low" class="priority-btn">Low</button>
-                            <button type="button" id="medium" class="priority-btn">Medium</button>
-                            <button type="button" id="high" class="priority-btn">High</button>
+                            <button type="button" id="low" class="priority-btn low">Low</button>
+                            <button type="button" id="medium" class="priority-btn medium">Medium</button>
+                            <button type="button" id="high" class="priority-btn high">High</button>
                         </div>
                         <input type="submit" id="submit-todo" class="submit" value="Add">
                     </form>
                     <form id="project-form" class="hide">
-                        <input type="text" placeholder="Project Title" name="project-title" id="project-title" maxlength="40" required>
+                        <input type="text" placeholder="Project Title" name="project-title" id="project-title"
+                            maxlength="40" required>
                         <input type="submit" id="submit-project" class="submit" value="Add">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="edit-container hide">
+        <div class="card">
+            <div class="form-header">
+                <h2>Edit Task</h2>
+                <button type="button" id="close-edit"><img src="images/window-close.svg" class="close-btn"></button>
+            </div>
+                <div class="form">
+                    <form id="edit-form">
+                        <input type="text" placeholder="Title of the task" id="edit-title" maxlength="40" required>
+                        <textarea placeholder="Details..." id="edit-detail"> </textarea>
+                        <div class="date-input" id="todo-date">
+                            <span>Due Date:</span>
+                            <input type="date" id="edit-dueDate" name="dueDate" required>
+                        </div>
+                        <div class="priority">
+                            <span>Priority:</span>
+                            <button type="button" id="edit-low" class="priority-btn low">Low</button>
+                            <button type="button" id="edit-medium" class="priority-btn medium">Medium</button>
+                            <button type="button" id="edit-high" class="priority-btn high">High</button>
+                        </div>
+                        <input type="submit" id="submit-edit" class="submit" value="Add">
                     </form>
                 </div>
             </div>

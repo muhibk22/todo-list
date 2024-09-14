@@ -1,4 +1,5 @@
-.form-container {
+.form-container,
+.edit-container {
     position: absolute;
     z-index: 1001;
     width: 100vw;
@@ -41,7 +42,8 @@
     height: 32px;
 }
 
-#close-form {
+#close-form,
+#close-edit {
     padding: 0;
     background-color: transparent;
     border: none;
@@ -132,44 +134,45 @@ input[type="date"] {
     margin: 16px 0;
 }
 
-.priority button {
+.priority-btn{
     font-size: 16px;
     padding: 3px 8px;
-    background-color: white;
     border-radius: 2px;
+    background-color: white;
     cursor: pointer;
 }
 
-#low {
+
+.low {
     margin-left: 18px;
     color: rgb(2, 120, 45);
     border: 1px solid green;
     transition: color 0.15s, background-color 0.15s;
 }
 
-#low:hover {
+.low:hover {
     background-color: rgb(2, 120, 45);
     color: white;
 }
 
-#medium {
+.medium {
     color: rgb(234, 113, 0);
     border: 1px solid rgb(234, 113, 0);
     transition: color 0.15s, background-color 0.15s;
 }
 
-#medium:hover {
+.medium:hover {
     background-color: rgb(234, 113, 0);
     color: white;
 }
 
-#high {
+.high {
     color: red;
     border: 1px solid red;
     transition: color 0.15s, background-color 0.15s;
 }
 
-#high:hover {
+.high:hover {
     background-color: rgb(198, 0, 23);
     color: white;
 }
@@ -193,7 +196,10 @@ input[type="date"] {
     display: none;
 }
 
-
+.selected{
+    border: 1px solid blue;
+    background-color: rgb(232, 233, 245);
+}
 
 @media (max-width:570px) {
     .sidebar-form {
@@ -221,7 +227,7 @@ input[type="date"] {
     input[type="date"] {
         padding: 2px 4px;
     }
-    #low{
+    .low{
         margin-left: 2px;
     }
 
