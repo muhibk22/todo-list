@@ -29,8 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     todoBtn.addEventListener("click", () => {
         if (selecedProject.index===null){
-            submitTodo(todoArray);
-            updateTasks(todoArray);
+            if(submitTodo(todoArray)){
+                updateTasks(todoArray);
+            }
         }
         else {
             submitTask(projectArray, selecedProject);
