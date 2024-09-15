@@ -1,14 +1,27 @@
 import { generateProjectTasks, updateTasks } from "./display";
 
+let selectedPriority = "Low";  
+
+function initializePriority() {
+    const priorityButton = document.querySelectorAll(".priority-btn");
+    priorityButton.forEach(button => {
+        button.addEventListener("click", () => {
+            selectedPriority = button.textContent; 
+            console.log("Priority set to:", selectedPriority);
+        });
+    });
+}
+
+
 function submitTodo(todoArray) {
     const todoForm = document.getElementById("todo-form");
     const todoTitle = document.getElementById("todo-title").value;
     const todoDetail = document.getElementById("todo-detail").value;
     const todoDate = document.getElementById("dueDate").value;
     const form = document.querySelector(".form-container");
-    let selectedPriority = "Low";
 
-    const priorityButton = document.querySelectorAll(".priority-btn");
+   
+
     const todoTitleCheck = document.getElementById("todo-title").value.trim();
 
     if (!todoTitleCheck) {
@@ -19,12 +32,6 @@ function submitTodo(todoArray) {
         alert("Enter Due Date");
         return;
     }
-    priorityButton.forEach(button => {
-        button.addEventListener("click", () => {
-            selectedPriority = button.textContent;
-        });
-    });
-
 
     const todo = {
         title: todoTitle,
@@ -41,6 +48,7 @@ function submitTodo(todoArray) {
         field.disabled = true;
     });
     form.classList.add("hide");
+    console.log("New todo added:", todo);
 
 }
 
@@ -172,4 +180,4 @@ function editTaskProject(index,taskArray, projectArray) {
     editForm.addEventListener("submit", () => handleSubmit(event));
 
 }
-export { submitTodo, submitProject, submitTask, editTask, editTaskProject };
+export { submitTodo, submitProject, submitTask, editTask, editTaskProject, initializePriority };
