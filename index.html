@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+    </style>
+<script defer src="main.js"></script></head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <span class="logo">
+                <img src="6392ae82bf1b2244d6f6.png" alt="Logo">
+                <h1>To-Do List</h1>
+            </span>
+            <button type="button" class="navigation" id="navigation">&#9776;</button>
+        </header>
+        <main class="main">
+            <nav class="sidebar">
+                <h2>Tasks</h2>
+                <ul>
+                    <li id="all-time"> <img src="18f552623324e58156e6.svg" class="calendar"> All Time</li>
+                    <li id="today"> <img src="3faae0cf01e4ecd160ef.svg" class="calendar"> Today</li>
+                    <li id="week"> <img src="c694ee9e01a22d978d4d.svg" class="calendar"> This Week</li>
+                </ul>
+                <h2>Projects</h2>
+                <div class="projects">
+
+                </div>
+                <button type="button" class="add" id="add"><img src="3cffe9a515498593b872.svg"></button>
+            </nav>
+            <div class="content">
+                <h1 class="title">Tasks- All Time</h1>
+                <div class="task-container">
+
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="detail-container hide">
+        <div class="detail-card">
+            <button type="button" id="close-details"><img src="fabc6ea21c817cc4963e.svg" class="close-btn"></button>
+            <div class="detail-heading">
+                <h2 class="detail-title"></h2>
+            </div>
+            <div class="detail-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="form-container hide">
+        <div class="card">
+            <div class="form-header">
+                <h2>Add new...</h2>
+                <button type="button" id="close-form"><img src="fabc6ea21c817cc4963e.svg" class="close-btn"></button>
+            </div>
+            <div class="form-body">
+                <div class="sidebar-form">
+                    <button type="button" id="task" class="sidebar-button">Task</button>
+                    <button type="button" id="project" class="sidebar-button">Project</button>
+                </div>
+                <div class="form">
+                    <form id="todo-form">
+                        <input type="text" placeholder="Title of the task" id="todo-title" maxlength="40" required>
+                        <textarea placeholder="Details..." id="todo-detail"> </textarea>
+                        <div class="date-input" id="todo-date">
+                            <span>Due Date:</span>
+                            <input type="date" id="dueDate" name="dueDate" required>
+                        </div>
+                        <div class="priority">
+                            <span>Priority:</span>
+                            <button type="button" id="low" class="priority-btn low">Low</button>
+                            <button type="button" id="medium" class="priority-btn medium">Medium</button>
+                            <button type="button" id="high" class="priority-btn high">High</button>
+                        </div>
+                        <input type="submit" id="submit-todo" class="submit" value="Add">
+                    </form>
+                    <form id="project-form" class="hide">
+                        <input type="text" placeholder="Project Title" name="project-title" id="project-title"
+                            maxlength="40" required>
+                        <input type="submit" id="submit-project" class="submit" value="Add">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="edit-container hide">
+        <div class="card">
+            <div class="form-header">
+                <h2>Edit Task</h2>
+                <button type="button" id="close-edit"><img src="fabc6ea21c817cc4963e.svg" class="close-btn"></button>
+            </div>
+                <div class="form">
+                    <form id="edit-form">
+                        <input type="text" placeholder="Title of the task" id="edit-title" maxlength="40" required>
+                        <textarea placeholder="Details..." id="edit-detail"> </textarea>
+                        <div class="date-input" id="todo-date">
+                            <span>Due Date:</span>
+                            <input type="date" id="edit-dueDate" name="dueDate" required>
+                        </div>
+                        <div class="priority">
+                            <span>Priority:</span>
+                            <button type="button" id="edit-low" class="priority-btn low">Low</button>
+                            <button type="button" id="edit-medium" class="priority-btn medium">Medium</button>
+                            <button type="button" id="edit-high" class="priority-btn high">High</button>
+                        </div>
+                        <input type="submit" id="submit-edit" class="submit" value="Add">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
