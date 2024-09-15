@@ -1,15 +1,29 @@
 import { generateProjectTasks, updateTasks } from "./display";
+import { isBefore, startOfDay } from "date-fns";
 
-let selectedPriority = "Low";  
+let selectedPriority = "Low";
 
 function initializePriority() {
     const priorityButton = document.querySelectorAll(".priority-btn");
     priorityButton.forEach(button => {
         button.addEventListener("click", () => {
-            selectedPriority = button.textContent; 
+            selectedPriority = button.textContent;
             console.log("Priority set to:", selectedPriority);
+
         });
     });
+}
+
+function checkDate(inputDate) {
+    const today = startOfDay(new Date());
+
+    const selectedDate = startOfDay(new Date(inputDate));
+
+    if (isBefore(selectedDate, today)) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 
@@ -20,18 +34,21 @@ function submitTodo(todoArray) {
     const todoDate = document.getElementById("dueDate").value;
     const form = document.querySelector(".form-container");
 
-   
 
     const todoTitleCheck = document.getElementById("todo-title").value.trim();
 
+
     if (!todoTitleCheck) {
-        alert("Title can not be empty ");
+        alert("Title can not be empty.");
         return;
     }
     if (!todoDate) {
-        alert("Enter Due Date");
+        alert("Enter Due Date.");
         return;
     }
+    todoForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+    });
 
     const todo = {
         title: todoTitle,
@@ -40,15 +57,22 @@ function submitTodo(todoArray) {
         priority: selectedPriority,
         status: 'incomplete'
     };
+    if (!checkDate(todoDate)) {
+        alert("Due date is invalid.");
+        return false;
+    }
+    else {
+        todoArray.push(todo);
+        todoForm.reset();
+        const formFields = form.querySelectorAll('input, select, textarea, date');
+        formFields.forEach((field) => {
+            field.disabled = true;
+        });
+        form.classList.add("hide");
+        console.log("New todo added:", todo);
+        return true;
+    }
 
-    todoArray.push(todo);
-    todoForm.reset();
-    const formFields = form.querySelectorAll('input, select, textarea, date');
-    formFields.forEach((field) => {
-        field.disabled = true;
-    });
-    form.classList.add("hide");
-    console.log("New todo added:", todo);
 
 }
 
@@ -129,7 +153,7 @@ function editTask(index, taskArray) {
     editForm.addEventListener("submit", () => handleSubmit(event));
 }
 
-function editTaskProject(index,taskArray, projectArray) {
+function editTaskProject(index, taskArray, projectArray) {
     const form = document.querySelector(".edit-container");
     const editForm = document.getElementById("edit-form");
     const todoTitle = document.getElementById("edit-title");
